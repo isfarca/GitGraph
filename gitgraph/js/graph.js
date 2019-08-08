@@ -3,10 +3,12 @@ const graphContainer = document.getElementById("graph-container");
 
 // Define options.
 const options =
-    {
-        template: "metro",
-        orientation: "vertical-reverse"
-    };
+{
+    template: "metro",
+    orientation: "vertical-reverse",
+    author: "Fethi Isfarca",
+    mode: "extended"
+};
 
 // Instantiate the graph.
 const gitgraph = GitgraphJS.createGitgraph(graphContainer, options);
