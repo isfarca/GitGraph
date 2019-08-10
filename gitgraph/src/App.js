@@ -3,7 +3,10 @@ import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
 
 const options =
 {
-    template: templateExtend(TemplateName.Metro, { colors: ["red", "blue", "orange"]}),
+    template: templateExtend(TemplateName.Metro, {
+        colors: ["red", "blue", "orange"],
+        commit: { message: { displayAuthor: false, displayHash: false } }
+    }),
     orientation: "vertical-reverse"
 };
 
@@ -23,6 +26,10 @@ function CreateGraph()
 
             const newFeature = gitgraph.branch("new-feature");
             newFeature.commit("Implement an awesome feature");
+
+            const bla = gitgraph.branch("bla");
+            bla.commit("Implement an awesome bla");
+            newFeature.merge(bla);
 
             master.commit("Hotfix a bug");
             newFeature.commit("Fix tests");
