@@ -1,29 +1,34 @@
-import React from 'react';
-const { Gitgraph } = require("@gitgraph/react");
+import * as React from 'react';
+import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
+
+const options =
+{
+    template: templateExtend(TemplateName.Metro, { colors: ["red", "blue", "orange"]}),
+    orientation: "vertical-reverse"
+};
 
 function CreateGraph()
 {
   return (
-      <Gitgraph>
+      <Gitgraph options={options}>
         {(gitgraph) =>
         {
-            // Simulate git commands with Gitgraph API.
             const master = gitgraph.branch("master");
-            master.commit("Initial commit");
+            master.commit("Init the project");
+            master
+                .commit("Add README")
+                .commit("Add tests")
+                .commit("Implement feature");
+            master.tag("v1.0");
 
-            const develop = gitgraph.branch("develop");
-            develop.commit("Add TypeScript");
+            const newFeature = gitgraph.branch("new-feature");
+            newFeature.commit("Implement an awesome feature");
 
-            const aFeature = gitgraph.branch("a-feature");
-            aFeature
-                .commit("Make it work")
-                .commit("Make it right")
-                .commit("Make it fast");
+            master.commit("Hotfix a bug");
+            newFeature.commit("Fix tests");
 
-            develop.merge(aFeature);
-            develop.commit("Prepare v1");
-
-            master.merge(develop).tag("V 1.0");
+            // Merge `newFeature` into `master`
+            master.merge(newFeature, "Release new version");
         }}
       </Gitgraph>
   );
