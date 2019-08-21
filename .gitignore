@@ -1,1 +1,21 @@
-.idea
+# dependencies
+gitgraph/node_modules
+gitgraph/.pnp
+gitgraph/.pnp.js
+
+# testing
+gitgraph/coverage
+
+# production
+gitgraph/build
+
+# misc
+gitgraph/.DS_Store
+gitgraph/.env.local
+gitgraph/.env.development.local
+gitgraph/.env.test.local
+gitgraph/.env.production.local
+
+gitgraph/npm-debug.log*
+gitgraph/yarn-debug.log*
+gitgraph/yarn-error.log*
