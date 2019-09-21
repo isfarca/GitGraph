@@ -20,15 +20,16 @@ class Graph extends Component
     // Create the git flow graph.
     static CreateGraph(gitgraph)
     {
-        const flow = gitgraph.branch({name: "flow", from: null});
         const master = gitgraph.branch({name: "master", from: null});
-
         master.commit("Initialize master commit without project files.");
+
+        const flow = gitgraph.branch({name: "flow", from: master});
         flow.commit("Initialize flow commit.");
-        flow.commit("Git flow graph added.");
+        flow.commit("Add Git flow graph.");
 
         const develop = gitgraph.branch({name: "develop", from: master});
         develop.commit("Initialize develop commit with project files.");
+        develop.commit("Add project files.");
         develop.commit("Add developed feature.");
         develop.commit("Fix bug");
 
