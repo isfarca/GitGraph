@@ -22,33 +22,18 @@ class Graph extends Component
     {
         const flow = gitgraph.branch({name: "flow", from: null});
         const master = gitgraph.branch({name: "master", from: null});
+
+        master.commit("Initialize master commit without project files.");
         flow.commit("Initialize flow commit.");
-        master.commit("Initialize master commit.");
+        flow.commit("Git flow graph added.");
 
         const develop = gitgraph.branch({name: "develop", from: master});
-        develop.commit("Initialize develop commit.");
-
-        const feature = gitgraph.branch({name: "feature", from: develop});
-        feature.commit("Initialize feature commit.");
-        const feature1 = gitgraph.branch({name: "feature1", from: feature});
-        const hotfix = gitgraph.branch({name: "hotfix", from: develop});
-        hotfix.commit("Initialize hotfix commit.");
-        const hotfix1 = gitgraph.branch({name: "hotfix1", from: hotfix});
-
-        feature1.commit("Initialize feature1 commit.");
-        feature.merge(feature1);
-
-        develop.merge(feature);
-
-        hotfix1.commit("Initialize hotfix1 commit.");
-        hotfix.merge(hotfix1);
-
-        develop.merge(hotfix);
+        develop.commit("Initialize develop commit with project files.");
+        develop.commit("Add developed feature.");
+        develop.commit("Fix bug");
 
         master.merge(develop);
         master.tag("Version number");
-
-        flow.commit("Expand git flow.");
     }
 }
 
